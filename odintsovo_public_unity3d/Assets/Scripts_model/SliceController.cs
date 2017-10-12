@@ -31,6 +31,7 @@ public class SliceController : MonoBehaviour
     [System.Serializable]
     public class Floor
     {
+		[SerializeField] string			_floorNumber;
         [SerializeField] Button         _button;
         [SerializeField] Obj[]          _obj;
         [SerializeField] Animator       _animation;
@@ -53,8 +54,9 @@ public class SliceController : MonoBehaviour
             }
         }
 
-		public void Set(Button button, Obj[] obj, Animator anim)
+		public void Set(string number, Button button, Obj[] obj, Animator anim)
 		{
+			_floorNumber = number;
 			_button = button;
 			_animation = anim;
 			_obj = new Obj[obj.Length];
@@ -182,7 +184,7 @@ public class SliceController : MonoBehaviour
             _floor[i].Activate(this, i);
         }
         //_clickController.ClickEvent += ClickApart;
-		Click(_floor.Length - 1);
+		Click(0);
     }
 
     void OnDestroy()
@@ -220,7 +222,7 @@ public class SliceController : MonoBehaviour
 
     public void ClickUpFloor()
     {
-		Click(_floor.Length - 1);
+		Click(0);
     }
 
     public bool Click(int index) //возвращает ложь если уже выбран этот этаж
@@ -281,7 +283,7 @@ public class SliceController : MonoBehaviour
             {
                 _floor[i].SetState(State.animate, WhenShow.before);
             }
-			_floor[newIndex].SetState(State.show, WhenShow.before);
+			_floor[newIndex].SetState(State.show, WhenShow.direction);
         }
         else if (currentIndex > newIndex)
         {
@@ -289,7 +291,7 @@ public class SliceController : MonoBehaviour
             {
                 _floor[i].SetState(State.animate, WhenShow.before);
             }
-			_floor[newIndex].SetState(State.show, WhenShow.direction);
+			_floor[newIndex].SetState(State.show, WhenShow.before);
         }
         
         if (newIndex > currentIndex)
@@ -370,11 +372,12 @@ public class SliceController : MonoBehaviour
         }*/
     }
 
-	public void SetFloorEditor(int index, Button button, Obj[] obj, Animator anim)
-	{
-		_floor[index].Set(button, obj, anim);
+	public void SetFloorEditor(string number, int index, Button button, Obj[] obj, Animator anim)
+	{		
+		_floor[index].Set(number, button, obj, anim);
 	}
-	
+
+	[SerializeField] string					_floorNumber;
     [SerializeField] Floor[]                _floor;
     [SerializeField] DuplexApart[]          _duplex;
     [SerializeField] Transform		        _camera;
