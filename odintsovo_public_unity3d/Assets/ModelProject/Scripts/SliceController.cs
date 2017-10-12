@@ -184,6 +184,7 @@ public class SliceController : MonoBehaviour
             _floor[i].Activate(this, i);
         }
         //_clickController.ClickEvent += ClickApart;
+		_indexFloor = _floor.Length - 1;
 		Click(0);
     }
 
@@ -377,7 +378,6 @@ public class SliceController : MonoBehaviour
 		_floor[index].Set(number, button, obj, anim);
 	}
 
-	[SerializeField] string					_floorNumber;
     [SerializeField] Floor[]                _floor;
     [SerializeField] DuplexApart[]          _duplex;
     [SerializeField] Transform		        _camera;
