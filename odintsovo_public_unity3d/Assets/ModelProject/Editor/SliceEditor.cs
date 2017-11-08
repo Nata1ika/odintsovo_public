@@ -10,7 +10,7 @@ public class SliceEditor : MonoBehaviour
 	static void SetSliceController()
 	{
 		string build = "A_";
-		int count = 26;
+		int count = 27;
 
 		GameObject go = GameObject.Find(build + "Slice_Controller");
 		SliceController	controller = go.GetComponent<SliceController>();
