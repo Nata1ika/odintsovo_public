@@ -70,7 +70,7 @@ public class RoomsColor : MonoBehaviour
 
         if (textPol != null)
         {
-            textPol.text = string.Format("№{0}\nКомнат: {1}\n{2} кв.м.", apart.number, apart.room, apart.square);
+			textPol.text = string.Format("№{0}\n{1}\n{2} кв.м.", apart.number, apart.room == 0 ? "Студия" : ("Комнат: " + apart.room), apart.square);
         }
         SetDisable();
     }
