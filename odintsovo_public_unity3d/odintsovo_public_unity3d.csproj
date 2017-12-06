@@ -81,6 +81,7 @@
     <Compile Include="Assets\ModelProject\Scripts\RoomsColor.cs" />
     <Compile Include="Assets\ModelProject\Scripts\SliceController.cs" />
     <Compile Include="Assets\ModelProject\Scripts\Text3d.cs" />
+    <Compile Include="Assets\Scripts\Json\Base.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
