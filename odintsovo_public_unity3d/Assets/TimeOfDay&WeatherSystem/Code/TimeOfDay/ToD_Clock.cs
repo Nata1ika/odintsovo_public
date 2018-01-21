@@ -3,9 +3,18 @@ using System.Collections;
 
 public class ToD_Clock : MonoBehaviour 
 {
+	public enum Axis
+	{
+		x,
+		y,
+		z
+	};
+
+
     public GameObject gTimeOfDay;
     public Transform tHourHand;
     public Transform tMinuteHand;
+	public Axis axis;
 
     private ToD_Base clToDBase;
 
@@ -24,8 +33,24 @@ public class ToD_Clock : MonoBehaviour
         float fCurrentHour = 24 * clToDBase.Get_fCurrentTimeOfDay;
         float fCurrentMinute = 60 * (fCurrentHour - Mathf.Floor(fCurrentHour));
 
-        tHourHand.localRotation = Quaternion.Euler(0, fCurrentHour * fHoursToDegrees, 0);
-        tMinuteHand.localRotation = Quaternion.Euler(0, fCurrentMinute * fMinutesToDegrees, 0);
+		if (axis == Axis.x)
+		{
+			tHourHand.localRotation = Quaternion.Euler(fCurrentHour * fHoursToDegrees, 0, 0);
+			tMinuteHand.localRotation = Quaternion.Euler(fCurrentMinute * fMinutesToDegrees, 0, 0);
+		}
+
+		if (axis == Axis.y)
+		{
+			tHourHand.localRotation = Quaternion.Euler(0, fCurrentHour * fHoursToDegrees, 0);
+			tMinuteHand.localRotation = Quaternion.Euler(0, fCurrentMinute * fMinutesToDegrees, 0);
+		}
+
+		if (axis == Axis.z)
+		{
+			tHourHand.localRotation = Quaternion.Euler(0, 0, -fCurrentHour * fHoursToDegrees);
+			tMinuteHand.localRotation = Quaternion.Euler(0, 0, -fCurrentMinute * fMinutesToDegrees);
+		}
+        
 	}
 }
 
